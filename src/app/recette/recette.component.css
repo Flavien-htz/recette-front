@@ -1,0 +1,50 @@
+.alert-container {
+  position: relative;
+  opacity: 1;
+  height: 70px;
+  animation: animationAlertOpacity .9s ease-out 1s forwards, animationAlertHeight .5s ease-out 1.4s forwards;
+}
+
+@keyframes animationAlertOpacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes animationAlertHeight {
+  from {
+    height: 70px;
+  }
+  to {
+    height: 0;
+  }
+}
+
+.alert {
+  position: relative;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 95%;
+  left: 0;
+  width: 99%;
+  margin-left: 0.5%;
+  height: 2px;
+  background-color: teal;
+  animation: animationAlertBar 3s cubic-bezier(0.15, 0.65, 0.4, 1) forwards;
+}
+
+@keyframes animationAlertBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+

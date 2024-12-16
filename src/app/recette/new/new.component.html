@@ -1,0 +1,71 @@
+<a routerLink="/recettes"
+   class="inline-flex items-center px-3 py-2 mb-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+       height="24" fill="none" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+  </svg>
+  Retour
+</a>
+<h2 class="mb-4 text-xl font-bold text-gray-900 ">Nouvelle recette </h2>
+<form [formGroup]="recetteForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col space-y-2 mb-5">
+    <label for="nom"></label>
+    <input formControlName="nom" type="text" id="nom"
+           class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="Nom" required/>
+
+    <label for="description"></label>
+    <textarea formControlName="nom" id="description" rows="4"
+              class="block p-2.5 w-full text-sm text-white bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Description..."></textarea>
+
+    <div formArrayName="ingredients">
+      <h2 class="mb-2">Ingredients</h2>
+      <div *ngFor="let ingredient of ingredients.controls; let i=index">
+        <div [formGroupName]="i" [ngClass]="{'mt-5' : i>0}">
+          <div>
+            <label for="ingredientQuantite"></label>
+            <input formControlName="quantite" id="ingredientQuantite" type="text"
+                   class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Quantite"/>
+          </div>
+          <div class="mt-2">
+            <label for="ingredientNom"></label>
+            <input formControlName="nom" id="ingredientNom" type="text"
+                   class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Nom"/>
+          </div>
+        </div>
+        <button (click)="deleteIngredient(i)" type="button" class="flex mt-2 text-red-600">
+          <svg class="w-6 h-6 mr-2 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+               height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+          </svg>
+          Supprimer cet ingrédient
+        </button>
+      </div>
+      <button (click)="addIngredient()" type="button" class="flex my-5">
+        <svg class="w-6 h-6 mr-2 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+             height="24"
+             fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+        </svg>
+        Ajouter un ingrédient
+      </button>
+    </div>
+
+
+    <label for="file_input"></label>
+    <input formControlName="file" (change)="onImagePicked($event)"
+           class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+           id="file_input" type="file">
+
+    <button type="submit"
+            class="text-white font-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Ajouter
+    </button>
+  </div>
+</form>

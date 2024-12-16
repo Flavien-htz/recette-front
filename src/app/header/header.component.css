@@ -1,0 +1,10 @@
+.active{
+    color:  #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .active{
+    color:  white;
+    background: #3b82f6;
+  }
+}
