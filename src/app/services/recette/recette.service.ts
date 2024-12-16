@@ -1,5 +1,6 @@
-import {Component, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Component, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, Subject } from 'rxjs';
 
 export interface Recette {
   id: number;
@@ -14,15 +15,24 @@ export interface Recette {
 })
 export class RecetteService {
 
-  constructor(private http: HttpClient) {
-  }
+  private recettesSubject = new Subject<Recette[]>();
+  recettes$ = this.recettesSubject.asObservable();
 
-  getRecetteById(id:number){
-    return this.http.get("http://localhost:8080/recette/"+id);
+  constructor(private http: HttpClient) {}
+
+  getRecetteById(id: number) {
+    return this.http.get<Recette>("http://localhost:8080/recette/" + id);
   }
 
   public getRecettes() {
-    return this.http.get("http://localhost:8080/recettes")
+    this.http.get<Recette[]>("http://localhost:8080/recettes")
+      .pipe(catchError(error => {
+        console.error('Error fetching recipes:', error);
+        return [];
+      }))
+      .subscribe(recettesData => {
+        this.recettesSubject.next(recettesData);
+      });
   }
 
   public getDetail(id: number) {
@@ -45,5 +55,4 @@ export class RecetteService {
 
     return this.http.post<any>("http://localhost:8080/recette", formData, { headers });
   }
-
 }
