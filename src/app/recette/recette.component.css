@@ -34,7 +34,6 @@
   width: 99%;
   margin-left: 0.5%;
   height: 2px;
-  background-color: teal;
   animation: animationAlertBar 3s cubic-bezier(0.15, 0.65, 0.4, 1) forwards;
 }
 

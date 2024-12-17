@@ -7,8 +7,9 @@
   </svg>
   Retour
 </a>
-<h2 class="mb-4 text-xl font-bold text-gray-900 ">Nouvelle recette </h2>
-<form [formGroup]="recetteForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="recetteForm" (ngSubmit)="onSubmit()" *ngIf="recette">
+  <h2 class="mb-4 text-xl font-bold text-gray-900 ">Modification de {{recette.nom}} </h2>
+
   <div class="flex flex-col space-y-2 mb-5">
     <label for="nom"></label>
     <input formControlName="nom" type="text" id="nom"
@@ -16,7 +17,7 @@
            placeholder="Nom" required/>
 
     <label for="description"></label>
-    <textarea formControlName="nom" id="description" rows="4"
+    <textarea formControlName="description" id="description" rows="4"
               class="block p-2.5 w-full text-sm text-white bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Description..."></textarea>
 
@@ -58,7 +59,7 @@
     </div>
 
 
-    <img class="rounded-lg shadow-lg w-32" [src]="getImageUrl(recette)" alt="image_recette">
+<!--    <img class="rounded-lg shadow-lg w-32" [src]="getImageUrl(recette)" alt="image_recette">-->
 
     <label for="file_input"></label>
     <input formControlName="file" (change)="onImagePicked($event)"

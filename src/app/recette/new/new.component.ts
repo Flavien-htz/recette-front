@@ -58,7 +58,6 @@ export class NewComponent {
     this.ingredients.push(this.formBuilder.group({
       nom: '',
       quantite: '',
-      unite: ''
     }));
   }
 
@@ -75,7 +74,7 @@ export class NewComponent {
 
     this.recetteService.createRecette(this.recetteForm.value, this.selectedFile).subscribe({
       next: response => {
-        this.messageService.changeMessage('Recette créée avec succès');
+        this.messageService.showMessage({text: 'Recette créée avec succès', type: 'success'});
 
         this.router.navigate(['/recettes']);
       },

@@ -22,7 +22,7 @@ export class UpdateComponent implements OnInit {
   selectedFile!: File;
   formError: boolean = false;
   errors: string = "";
-  recette : any;
+  recette: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,18 +51,21 @@ export class UpdateComponent implements OnInit {
         description: data.description,
         // file: data.imageFilename
       });
-      data.ingredients.forEach((ingredient: { nom: string; quantite: string }) => {
-        this.ingredients.push(this.formBuilder.group({
-          nom: ingredient.nom,
-          quantite: ingredient.quantite,
-        }));
-      });
+      if (data.ingredients > 0) {
+        data.ingredients.forEach((ingredient: { nom: string; quantite: string }) => {
+          this.ingredients.push(this.formBuilder.group({
+            nom: ingredient.nom,
+            quantite: ingredient.quantite,
+          }));
+        });
+      }
     });
   }
 
 
   get ingredients() {
     return this.recetteForm.get('ingredients') as FormArray;
+
   }
 
   addIngredient() {
@@ -74,29 +77,32 @@ export class UpdateComponent implements OnInit {
   }
 
 
-
   onImagePicked(event: Event) {
-    // @ts-ignore
-    this.selectedFile = event.target['files'][0];
+    const inputElement = event.target as HTMLInputElement; // Type assertion
+    if (inputElement && inputElement.files) {
+      this.selectedFile = inputElement.files[0];
+    }
   }
+
   deleteIngredient(i: number) {
     this.ingredients.removeAt(i);
   }
-  getImageUrl(recette:Recette) {
+
+  getImageUrl(recette: Recette) {
     return this.recetteService.getImage(recette.id);
   }
-  onSubmit() {
 
-    // this.recetteService.createRecette(this.recetteForm.value, this.selectedFile).subscribe({
-    //   next: response => {
-    //     this.messageService.changeMessage('Recette créée avec succès');
-    //
-    //     this.router.navigate(['/recettes']);
-    //   },
-    //   error: error => {
-    //     this.formError = true;
-    //     this.errors = error;
-    //   },
-    // });
+  onSubmit() {
+    this.recetteService.updateRecette(this.recette.id, this.recetteForm.value, this.selectedFile).subscribe({
+      next: response => {
+        console.log(response)
+        this.messageService.showMessage({text: 'Recette modifiée avec succès', type: 'success'});
+        this.router.navigate(['/recettes']);
+      },
+      error: error => {
+        this.formError = true;
+        this.errors = error;
+      },
+    });
   }
 }

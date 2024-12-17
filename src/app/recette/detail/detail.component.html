@@ -1,5 +1,5 @@
-<div class="flex flex-row mt-32">
-  <img class="rounded-lg shadow-lg" [src]="getImageUrl(recette)" alt="image_recette">
+<div *ngIf="recette$ | async as recette" class="flex flex-row mt-32">
+  <img class="rounded-lg shadow-lg" [src]="recette.imageUrl" alt="image_recette">
   <div class="px-16">
     <h1
       class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-gray-900">{{ recette.nom }}</h1>
@@ -21,7 +21,7 @@
 
 
     <div class="flex items-center space-x-4">
-      <button type="button"
+      <button type="button" (click)="openDialog(recette)"
               class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
         <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
@@ -55,4 +55,6 @@
 
     </div>
   </div>
+
+
 </div>
