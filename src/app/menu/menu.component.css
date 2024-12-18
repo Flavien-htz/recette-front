@@ -1,0 +1,67 @@
+/* styles.css ou menu-calendar.component.css */
+.fc-event {
+  cursor: pointer;
+}
+
+.fc-timegrid-slot-label {
+  font-size: 0.8em;
+}
+
+.event-tooltip {
+  padding: 8px;
+}
+
+.event-tooltip ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.event-tooltip h4 {
+  margin: 0 0 8px 0;
+}
+
+/* Ajustements CSS pour mobile */
+@media screen and (max-width: 768px) {
+  .fc {
+    /* Réduire les marges sur mobile */
+    margin: 0.5rem;
+  }
+  
+  .fc-toolbar-title {
+    /* Ajuster la taille du titre */
+    font-size: 1.2em !important;
+  }
+  
+  .fc-button {
+    /* Rendre les boutons plus faciles à toucher */
+    padding: 0.4em 0.65em !important;
+    font-size: 0.9em !important;
+  }
+
+  /* Améliorer la zone tactile pour la sélection */
+  .fc-day {
+    min-height: 3em;
+  }
+
+  /* Assurer que la zone de sélection est bien visible */
+  .fc-highlight {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    opacity: 1 !important;
+  }
+
+  /* Empêcher le zoom sur les interactions tactiles */
+  .fc {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Optimiser l'affichage de la vue journalière sur mobile */
+  .fc-daygrid-day-frame {
+    min-height: 80px;
+  }
+
+  /* Ajuster la hauteur du calendrier en vue journalière */
+  .fc-view-harness {
+    height: calc(100vh - 120px) !important;
+  }
+}

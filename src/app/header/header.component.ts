@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterLink} from "@angular/router";
-import {NgClass} from '@angular/common';
+import {NgClass, NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-header',
   imports: [
     RouterLink,
-    NgClass
+    NgClass,
+    NgOptimizedImage
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

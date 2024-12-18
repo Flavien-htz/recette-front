@@ -27,7 +27,7 @@ export class DeleteComponent {
   delete(recette: any){
       this.recetteService.deleteRecette(recette.id).subscribe({
         next: response => {
-          this.messageService.showMessage({text: 'Recette supprimée avec succès', type: 'success'});
+          this.messageService.showMessage({text: 'Recette supprimée avec succès', type: 'success', duration: 3000});
           this.router.navigate(['/recettes']);
         },
         error: error => {

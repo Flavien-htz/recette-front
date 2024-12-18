@@ -74,7 +74,7 @@ export class NewComponent {
 
     this.recetteService.createRecette(this.recetteForm.value, this.selectedFile).subscribe({
       next: response => {
-        this.messageService.showMessage({text: 'Recette créée avec succès', type: 'success'});
+        this.messageService.showMessage({text: 'Recette créée avec succès', type: 'success', duration: 3000});
 
         this.router.navigate(['/recettes']);
       },

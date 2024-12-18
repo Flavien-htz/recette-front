@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Ajouter un repas</h2>
+<mat-dialog-content>
+  <h3>{{dateFormatted}}</h3>
+  <form #eventForm="ngForm" class="mt-2">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Recette</mat-label>
+      <input matInput [(ngModel)]="event.title" name="title" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Quand</mat-label>
+      <mat-select [(ngModel)]="event.moment" name="endTime" required>
+        <mat-option value="midi">Midi</mat-option>
+        <mat-option value="soir">Soir</mat-option>
+        <mat-option value="both">Les deux</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--        <mat-form-field appearance="fill" class="full-width">-->
+    <!--          <mat-label>Heure de début</mat-label>-->
+    <!--          <mat-select [(ngModel)]="event.startTime" name="startTime" required>-->
+    <!--            <mat-option value="12:00">12:00</mat-option>-->
+    <!--            <mat-option value="19:00">19:00</mat-option>-->
+    <!--          </mat-select>-->
+    <!--        </mat-form-field>-->
+
+    <!--        <mat-form-field appearance="fill" class="full-width">-->
+    <!--          <mat-label>Heure de fin</mat-label>-->
+    <!--          <mat-select [(ngModel)]="event.endTime" name="endTime" required>-->
+    <!--            <mat-option value="13:00">13:00</mat-option>-->
+    <!--            <mat-option value="20:00">20:00</mat-option>-->
+    <!--          </mat-select>-->
+    <!--        </mat-form-field>-->
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-button color="primary"
+          [disabled]="!eventForm.form.valid"
+          (click)="onSubmit()">
+    Ajouter
+  </button>
+</mat-dialog-actions>

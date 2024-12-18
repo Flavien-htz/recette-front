@@ -96,7 +96,7 @@ export class UpdateComponent implements OnInit {
     this.recetteService.updateRecette(this.recette.id, this.recetteForm.value, this.selectedFile).subscribe({
       next: response => {
         console.log(response)
-        this.messageService.showMessage({text: 'Recette modifiée avec succès', type: 'success'});
+        this.messageService.showMessage({text: 'Recette modifiée avec succès', type: 'success', duration: 3000});
         this.router.navigate(['/recettes']);
       },
       error: error => {

@@ -37,7 +37,7 @@ export class RecetteService {
   public getRecettes() {
     this.http.get<Recette[]>(this.API_URL+"/recettes")
       .pipe(catchError(error => {
-        this.messageService.showMessage({text: 'Aucune recette trouvée', type: 'error'});
+        this.messageService.showMessage({text: 'Aucune recette trouvée', type: 'error', duration: 3000});
         return [];
       }))
       .subscribe(recettesData => {
