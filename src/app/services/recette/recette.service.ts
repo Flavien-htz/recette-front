@@ -56,6 +56,11 @@ export class RecetteService {
 
   public createRecette(recette: any, file: File) {
     delete recette.file;
+    if(recette.ingredients.length === 1) {
+      if(recette.ingredients[0].nom === "" && recette.ingredients[0].quantite === "") {
+        delete recette.ingredients;
+      }
+    }
 
     const formData = new FormData();
     formData.append('recette', JSON.stringify(recette));

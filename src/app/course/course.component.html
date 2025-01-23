@@ -1,0 +1,29 @@
+<div class="flex mb-10">
+  <div class="relative">
+    <input type="text" id="nom"
+           class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="Nom" #newCourseItemNom/>
+  </div>
+  <div class="relative">
+    <input type="text" id="quantite"
+           class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="Quantite" #newCourseItemQuantite/>
+  </div>
+  <div>
+    <button (click)="newCourse(newCourseItemNom, newCourseItemQuantite)" type="submit"
+            class="p-4 ms-5 text-white font-bold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg text-sm text-center">
+      Ajouter
+    </button>
+  </div>
+</div>
+
+
+<ul cdkDropList class="course-list" (cdkDropListDropped)="drop($event)">
+  <li *ngFor=" let course of courses" class="course-box" cdkDrag>
+    <mat-checkbox [checked]=course.checked (change)="check($event, course.id)">
+      @if (course.quantite !== '') {
+        {{ course.quantite }} -
+      }{{ course.nom }}
+    </mat-checkbox>
+  </li>
+</ul>

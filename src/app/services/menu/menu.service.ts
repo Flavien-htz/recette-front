@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {catchError} from 'rxjs';
-import {Recette} from '../recette/recette.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -46,7 +44,7 @@ export class MenuService {
       startDate: menuData.startDate,
       endDate: menuData.endDate
     }
-    // console.log(menuForm)
+
     formData.append('menu', JSON.stringify(menuForm));
     return this.http.put(this.API_URL+"/menu/"+id, formData);
   }

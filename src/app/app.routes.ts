@@ -4,6 +4,7 @@ import {RecetteComponent} from "./recette/recette.component";
 import {DetailComponent} from './recette/detail/detail.component';
 import {NewComponent} from './recette/new/new.component';
 import {UpdateComponent} from './recette/update/update.component';
+import {CourseComponent} from './course/course.component';
 
 export const routes: Routes = [
   {path:'', redirectTo: 'recette', pathMatch: 'full'},
@@ -12,5 +13,6 @@ export const routes: Routes = [
   {path:'recettes/show/:id', component: DetailComponent},
   {path:'recettes/update/:id', component: UpdateComponent},
   {path:'recettes/create', component: NewComponent},
+  {path:'courses', component: CourseComponent}
 
 ];

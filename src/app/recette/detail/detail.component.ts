@@ -5,6 +5,8 @@ import {NgForOf, NgIf, AsyncPipe} from '@angular/common';
 import {Observable, map, switchMap} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteComponent} from './dialog/delete/delete.component';
+import {RecetteComponent} from '../recette.component';
+import {MenuComponent} from '../../menu/menu.component';
 
 @Component({
   selector: 'app-detail',
@@ -13,6 +15,8 @@ import {DeleteComponent} from './dialog/delete/delete.component';
     NgForOf,
     NgIf,
     AsyncPipe,
+    RecetteComponent,
+    MenuComponent,
   ],
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css'],
